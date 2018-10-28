@@ -40,7 +40,7 @@ let release =
 
 let version = release.AssemblyVersion
 let releaseNotes = release.Notes |> String.concat "\n"
-let testDir = "src/SqlClient.Tests/bin/Release/net451"
+let testDir = "src/SqlClient.Tests/bin/Release/net461"
 
 // --------------------------------------------------------------------------------------
 // Generate assembly info files with the right version & up-to-date information

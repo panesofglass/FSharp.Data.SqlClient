@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net451;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40;net461;netstandard2.0</TargetFrameworks>
     <AssemblyName>FSharp.Data.SqlClient</AssemblyName>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -15,7 +15,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>..\..\bin\net40\FSharp.Data.SqlClient.XML</DocumentationFile>
   </PropertyGroup>
-  <ItemGroup Condition="'$(TargetFramework)' == 'net451'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <Reference Include="System.Data" />
     <Reference Include="System.Transactions" />
   </ItemGroup>
@@ -36,13 +36,12 @@
     <Compile Include="DynamicRecord.fs" />
     <Compile Include="ISqlCommand.fs" />
     <Compile Include="Runtime.fs" />
-  </ItemGroup>
-  <Target Name="CopyDesignTimeAssemblies" AfterTargets="Build" Condition="$(TargetFramework) == 'net451' Or $(TargetFramework) == 'netstandard2.0'">
+  </ItemGroup> 
+  <Target Name="CopyDesignTimeAssemblies" AfterTargets="Build" Condition="$(TargetFramework) == 'net40' Or $(TargetFramework) == 'net461'">
     <ItemGroup>
-      <DesignTimeAssemblies Include="..\SqlClient.DesignTime\bin\$(Configuration)\net451\*.*" />
+      <DesignTimeAssemblies Include="..\..\bin\typeproviders\fsharp41\$(TargetFramework)\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(DesignTimeAssemblies)" DestinationFolder="..\..\bin\typeproviders\fsharp41\$(TargetFramework)" />
     <Copy SourceFiles="@(DesignTimeAssemblies)" DestinationFolder="..\..\bin\$(TargetFramework)" />
-  </Target>
+  </Target> 
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

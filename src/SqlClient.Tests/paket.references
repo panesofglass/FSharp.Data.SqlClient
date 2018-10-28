@@ -1,3 +1,7 @@
+group Netstandard
+	System.Data.SqlClient
+	System.Configuration.ConfigurationManager
+
 group Test
 	FSharp.Core
 	FSharp.Configuration

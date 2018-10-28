@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net451</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <AssemblyName>SqlClient.DesignTime.Tests</AssemblyName>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -14,10 +14,16 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Data.SqlClient.DesignTime">
-      <HintPath>..\..\..\bin\net40\FSharp.Data.SqlClient.DesignTime.dll</HintPath>
+      <HintPath>..\..\..\bin\net461\FSharp.Data.SqlClient.DesignTime.dll</HintPath>
     </Reference>
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlClient">
+      <HintPath>..\..\..\packages\netstandard\System.Data.SqlClient\lib\netstandard2.0\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration.ConfigurationManager">
+      <HintPath>..\..\..\packages\netstandard\System.Configuration.ConfigurationManager\lib\netstandard2.0\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <!--<Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />-->
     <Reference Include="System.Numerics" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Xml" />
