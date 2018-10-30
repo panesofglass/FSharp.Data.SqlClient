@@ -1,9 +1,8 @@
-group Net461
-	System.Data.SqlClient
-	System.Configuration.ConfigurationManager
+FSharp.Core
+System.Data.SqlClient
+System.Configuration.ConfigurationManager
 
 group Test
-	FSharp.Core
 	FSharp.Configuration
 	Microsoft.SqlServer.Types
 	Newtonsoft.Json

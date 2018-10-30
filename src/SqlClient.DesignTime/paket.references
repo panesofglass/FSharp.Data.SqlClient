@@ -1,15 +1,9 @@
 File: ProvidedTypes.fsi .
 File: ProvidedTypes.fs .
 
-group Net40
-    FSharp.Core
-    Microsoft.SqlServer.TransactSql.ScriptDom
-    Microsoft.SqlServer.Types
+FSharp.Core
+Microsoft.SqlServer.TransactSql.ScriptDom
+Microsoft.SqlServer.Types
 
-group Net461
-    FSharp.Core
-    Microsoft.SqlServer.TransactSql.ScriptDom
-    Microsoft.SqlServer.Types
-
-    System.Data.SqlClient
-    System.Configuration.ConfigurationManager
+System.Data.SqlClient
+System.Configuration.ConfigurationManager

@@ -6,12 +6,6 @@
     <DisableImplicitFSharpCoreReference>true</DisableImplicitFSharpCoreReference>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System.Data.SqlClient">
-      <HintPath>..\packages\netstandard\System.Data.SqlClient\lib\netstandard2.0\System.Data.SqlClient.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Configuration.ConfigurationManager">
-      <HintPath>..\packages\netstandard\System.Configuration.ConfigurationManager\lib\netstandard2.0\System.Configuration.ConfigurationManager.dll</HintPath>
-    </Reference>
     <Reference Include="FSharp.Data.SqlClient">
       <HintPath>..\bin\netstandard2.0\FSharp.Data.SqlClient.dll</HintPath>
     </Reference>
