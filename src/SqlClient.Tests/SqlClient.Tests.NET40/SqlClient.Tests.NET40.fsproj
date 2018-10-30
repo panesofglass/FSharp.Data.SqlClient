@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>net40;net461</TargetFrameworks>
     <AssemblyName>SqlClient.Tests.NET40</AssemblyName>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -14,20 +14,30 @@
     <Compile Include="Program.fs" />
     <Content Include="Uncomment.App.config" />
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="FSharp.Data.SqlClient">
-      <HintPath>..\..\..\bin\netstandard2.0\FSharp.Data.SqlClient.dll</HintPath>
-    </Reference>
+  </ItemGroup>  
+  <!--<ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <Reference Include="System.Data.SqlClient">
       <HintPath>..\..\..\packages\netstandard\System.Data.SqlClient\lib\netstandard2.0\System.Data.SqlClient.dll</HintPath>
     </Reference>
     <Reference Include="System.Configuration.ConfigurationManager">
       <HintPath>..\..\..\packages\netstandard\System.Configuration.ConfigurationManager\lib\netstandard2.0\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
-    <!--<Reference Include="System.Data" />-->
+    <Reference Include="FSharp.Data.SqlClient">
+      <HintPath>..\..\..\bin\netstandard2.0\FSharp.Data.SqlClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>-->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+    <Reference Include="FSharp.Data.SqlClient">
+      <HintPath>..\..\..\bin\netstandard2.0\FSharp.Data.SqlClient.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+    <Reference Include="System.Data" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
+    <Reference Include="FSharp.Data.SqlClient">
+      <HintPath>..\..\..\bin\net40\FSharp.Data.SqlClient.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="..\..\..\.paket\Paket.Restore.targets" />
 </Project>

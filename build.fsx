@@ -42,6 +42,10 @@ let version = release.AssemblyVersion
 let releaseNotes = release.Notes |> String.concat "\n"
 let testDir = "src/SqlClient.Tests/bin/Release/net461"
 
+
+let install = lazy DotNet.install DotNet.Release_2_1_4
+let inline dnDefault arg = DotNet.Options.lift install.Value arg
+
 // --------------------------------------------------------------------------------------
 // Generate assembly info files with the right version & up-to-date information
 
@@ -65,14 +69,16 @@ Target.create "CleanDocs" (fun _ ->
     Shell.cleanDirs ["docs/output"]
 )
 
-// --------------------------------------------------------------------------------------
-// Build library (builds Visual Studio solution, which builds multiple versions
-// of the runtime library & desktop + Silverlight version of design time library)
+let slnPath = "SqlClient.sln"
 
 Target.create "Build" (fun _ ->
-    files (["SqlClient.sln"])
-    |> MSBuild.runRelease id "" "Restore;Rebuild"
-    |> ignore
+    DotNet.restore 
+        (fun args -> { args with NoCache = true } |> dnDefault)
+        slnPath
+    DotNet.exec dnDefault "clean" slnPath |> ignore
+    DotNet.build
+        (fun args -> { args with Configuration = DotNet.Release } |> dnDefault)
+        slnPath
 )
 
 #r "System.Data"
@@ -140,10 +146,15 @@ Target.create "DeployTestDB" (fun _ ->
             cmd.ExecuteNonQuery() |> ignore
 )
 
+let testSlnPath = "Tests.sln"
+
 Target.create "BuildTests" (fun _ ->
-    files ["Tests.sln"]
-    |> MSBuild.runRelease id "" "Restore;Rebuild"
-    |> ignore
+    DotNet.restore 
+        (fun args -> { args with NoCache = true } |> dnDefault)
+        testSlnPath
+    DotNet.build
+        (fun args -> { args with Configuration = DotNet.Release } |> dnDefault)
+        testSlnPath
 )
 
 // --------------------------------------------------------------------------------------

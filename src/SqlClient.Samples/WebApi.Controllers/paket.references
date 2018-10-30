@@ -1,4 +1,5 @@
-FSharp.Core
+group Net461
+	FSharp.Core
 
 group Samples
 	FSharp.Data.SqlClient

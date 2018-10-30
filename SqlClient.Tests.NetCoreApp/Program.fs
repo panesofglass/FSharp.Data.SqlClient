@@ -1,4 +1,4 @@
-open FSharp.Data
+﻿open FSharp.Data
 
 [<EntryPoint>]
 let main _ =

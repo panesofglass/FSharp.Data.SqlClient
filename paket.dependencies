@@ -1,41 +1,40 @@
 source https://www.nuget.org/api/v2/
-framework: net40, net461, netstandard2.0
 redirects: force
 generate_load_scripts: on
-
-nuget FSharp.Core = 4.1.18
 
 github fsprojects/FSharp.TypeProviders.SDK:7d57cd409d7299592822713195924e42b2b7acde src/ProvidedTypes.fs
 github fsprojects/FSharp.TypeProviders.SDK:7d57cd409d7299592822713195924e42b2b7acde src/ProvidedTypes.fsi
 github fsprojects/FSharp.TypeProviders.SDK:7d57cd409d7299592822713195924e42b2b7acde src/ProvidedTypesTesting.fs
 
-group Framework
-	condition: NETFX
+group Net40
+	condition: NET40
 	source https://www.nuget.org/api/v2/
-	framework: net40, net461
+	framework: net40
 
+	nuget FSharp.Core = 4.1.18
 	nuget Microsoft.SqlServer.TransactSql.ScriptDom
 	nuget Microsoft.SqlServer.Types ~> 12
 
-group Netstandard
-	condition: NETSTANDARD OR NET461
+group Net461
+	condition: NET461
 	source https://www.nuget.org/api/v2/
-	framework: net461, netstandard2.0
+	framework: net461
+
+	nuget FSharp.Core = 4.5.2
+	nuget Microsoft.SqlServer.TransactSql.ScriptDom
+	nuget Microsoft.SqlServer.Types ~> 12
 
 	nuget System.Data.SqlClient
 	nuget System.Configuration.ConfigurationManager
 
-//group DesignTime
-//	source https://www.nuget.org/api/v2/
-//	framework: net40, net461
-//	redirects: force
-
-//	nuget FSharp.Core = 4.1.18
-//	nuget Microsoft.SqlServer.TransactSql.ScriptDom
-//	nuget Microsoft.SqlServer.Types ~> 12
-
-//	nuget System.Data.SqlClient
-//	nuget System.Configuration.ConfigurationManager
+group Netstandard
+	condition: NETSTANDARD
+	source https://www.nuget.org/api/v2/
+	framework: netstandard2.0
+	
+	nuget FSharp.Core = 4.5.2
+	nuget System.Data.SqlClient
+	nuget System.Configuration.ConfigurationManager
 
 group Build
 	source https://www.nuget.org/api/v2/
@@ -57,7 +56,7 @@ group Test
 	framework: >= net451
 	redirects: force
 
-	nuget FSharp.Core = 4.1.18
+	nuget FSharp.Core = 4.5.2
 	nuget FSharp.Configuration = 1.4.0
 	nuget Microsoft.SqlServer.Types ~> 12
 	nuget Newtonsoft.Json

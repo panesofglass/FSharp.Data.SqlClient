@@ -1,1 +1,12 @@
-FSharp.Core
+group Net40
+    FSharp.Core
+
+group Net461
+    FSharp.Core
+	System.Data.SqlClient
+	System.Configuration.ConfigurationManager
+
+group Netstandard
+    FSharp.Core
+	System.Data.SqlClient
+	System.Configuration.ConfigurationManager

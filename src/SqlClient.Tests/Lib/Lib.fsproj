@@ -2,7 +2,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <Import Project="..\..\..\fsc.props" />
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
     <AssemblyName>Lib</AssemblyName>
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -28,7 +28,6 @@
     <Reference Include="System.Configuration.ConfigurationManager">
       <HintPath>..\..\..\packages\netstandard\System.Configuration.ConfigurationManager\lib\netstandard2.0\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
-    <!--<Reference Include="System.Numerics" />-->
   </ItemGroup>
   <Import Project="..\..\..\.paket\Paket.Restore.targets" />
 </Project>

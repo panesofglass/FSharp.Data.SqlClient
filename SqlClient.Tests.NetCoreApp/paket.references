@@ -1,0 +1,4 @@
+﻿group Netstandard
+	FSharp.Core
+	System.Data.SqlClient
+	System.Configuration.ConfigurationManager

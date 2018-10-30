@@ -1,4 +1,4 @@
-group Netstandard
+group Net461
 	System.Data.SqlClient
 	System.Configuration.ConfigurationManager
 
