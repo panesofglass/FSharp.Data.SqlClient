@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\fsc.props" />
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
     <AssemblyName>SqlClient.Tests</AssemblyName>
@@ -48,9 +49,6 @@
     <Reference Include="FSharp.Data.SqlClient">
       <HintPath>..\..\bin\netstandard2.0\FSharp.Data.SqlClient.dll</HintPath>
     </Reference>
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>

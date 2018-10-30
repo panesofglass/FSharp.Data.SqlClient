@@ -12,6 +12,15 @@
   <ItemGroup Condition="$(TargetFramework) == 'net40'">
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="FSharp.Core">
+      <HintPath>..\..\packages\net40\FSharp.Core\lib\net40\FSharp.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.TransactSql.ScriptDom">
+      <HintPath>..\..\packages\net40\Microsoft.SqlServer.TransactSql.ScriptDom\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types">
+      <HintPath>..\..\packages\net40\Microsoft.SqlServer.Types\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.IdentityModel" />
@@ -33,12 +42,12 @@
     <Compile Include="../SqlClient/Extensions.fs" />
     <Compile Include="../SqlClient/Shared.fs" />
     <Compile Include="../SqlClient/Configuration.fs" />
-    <Compile Include="../SqlClient/DataTable.fs" />    
+    <Compile Include="../SqlClient/DataTable.fs" />
     <Compile Include="../SqlClient/DynamicRecord.fs" />
     <Compile Include="../SqlClient/ISqlCommand.fs" />
     <Compile Include="../SqlClient/Runtime.fs" />
     <Compile Include="DesignTimeConnectionString.fs" />
-    <Compile Include="ProvidedTypesCache.fs" />    
+    <Compile Include="ProvidedTypesCache.fs" />
     <Compile Include="SqlClientExtensions.fs" />
     <Compile Include="QuotationsFactory.fs" />
     <Compile Include="DesignTime.fs" />
@@ -52,6 +61,6 @@
     <None Include="Scripts\ReverseLineOrderForNotex.fsx" />
     <None Include="Scripts\XE.fsx" />
     <None Include="paket.references" />
-  </ItemGroup>  
+  </ItemGroup>
   <Import Project="..\..\.paket\Paket.Restore.targets" />
 </Project>
