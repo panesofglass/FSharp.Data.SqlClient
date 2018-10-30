@@ -2,8 +2,9 @@
 
 open Xunit
 open FSharp.Data
+open System.Configuration
 
-let adventureWorks = FSharp.Configuration.AppSettings<"app.config">.ConnectionStrings.AdventureWorks
+let adventureWorks = ConfigurationManager.ConnectionStrings.["AdventureWorks"].ConnectionString
 
 type Get42 = SqlCommandProvider<"SELECT 42", ConnectionStrings.AdventureWorksNamed, ConfigFile = "appWithInclude.config">
 

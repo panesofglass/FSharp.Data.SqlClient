@@ -3,11 +3,9 @@
 open Xunit
 open System.IO
 open System.Configuration
-open FSharp.Data.Configuration
 open FSharp.Data.SqlClient
 
-let adventureWorks = FSharp.Configuration.AppSettings<"app.config">.ConnectionStrings.AdventureWorks
-
+let adventureWorks = ConfigurationManager.ConnectionStrings.["AdventureWorks"].ConnectionString
 [<Fact>]
 let ``Wrong config file name`` () = 
     Assert.Throws<FileNotFoundException>(

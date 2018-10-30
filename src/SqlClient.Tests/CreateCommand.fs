@@ -41,6 +41,7 @@ let udttAndTuplesOutput() =
     ]
     Assert.Equal(Some(1, Some "monkey"), cmd.Execute(x = p))    
 
+#if NET461
 open Microsoft.SqlServer.Types
 open System.Data.SqlTypes
 
@@ -56,6 +57,7 @@ let spatialTypes() =
     let p = SqlHierarchyId.Parse(SqlString("/1/1/"))
     let result = cmd.Execute( p)
     Assert.Equal(Some(Some p), result)
+#endif
 
 [<Fact>]
 let optionalParams() = 

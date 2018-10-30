@@ -43,17 +43,16 @@ group Build
 
 group Test
 	source https://www.nuget.org/api/v2/
-	framework: >= net451
+	framework: net461, netcoreapp2.0
 	redirects: force
 
 	nuget FSharp.Core = 4.3.4
 	nuget System.Data.SqlClient
 	nuget System.Configuration.ConfigurationManager
-	nuget FSharp.Configuration = 1.4.0	
-	nuget Microsoft.SqlServer.Types ~> 12
+
 	nuget Newtonsoft.Json
-	nuget xunit = 1.9.2
-	nuget xunit.runner.visualstudio = 2.1.0
+	nuget xunit = 2.4.1
+	nuget xunit.runner.visualstudio = 2.4.1
 
 group Samples
 	source https://www.nuget.org/api/v2/

@@ -25,7 +25,7 @@ type DataTablesTests() =
         use cmd = new SqlCommandProvider<"DBCC CHECKIDENT ('HumanResources.Shift', RESEED, 4)", ConnectionStrings.AdventureWorksNamed>()
         cmd.Execute() |> ignore
 
-    let adventureWorks = FSharp.Configuration.AppSettings<"app.config">.ConnectionStrings.AdventureWorks
+    let adventureWorks = ConfigurationManager.ConnectionStrings.["AdventureWorks"].ConnectionString
     
     [<Fact>]
     member __.NewRowAndBulkCopy() = 

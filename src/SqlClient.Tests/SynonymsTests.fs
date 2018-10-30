@@ -39,7 +39,7 @@ let SPSynonym() =
 
 [<Fact>]
 let TableSynonym() = 
-    let adventureWorks = FSharp.Configuration.AppSettings<"app.config">.ConnectionStrings.AdventureWorks
+    let adventureWorks = System.Configuration.ConfigurationManager.ConnectionStrings.["AdventureWorks"].ConnectionString
     use conn = new SqlConnection(connectionString = adventureWorks)
     conn.Open()
     use tran = conn.BeginTransaction()

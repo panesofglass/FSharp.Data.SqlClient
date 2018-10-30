@@ -58,6 +58,7 @@ let ``no bad error message when db is changed before table update ``() =
     
     Assert.Throws<SqlException>(fun _ ->  table.Update(conn, tran) |> ignore) |> ignore   
 
+#if NET461
 type Address_GetAddressBySpatialLocation = AdventureWorks.Person.Address_GetAddressBySpatialLocation
 open Microsoft.SqlServer.Types
     
@@ -65,6 +66,7 @@ open Microsoft.SqlServer.Types
 let ``GEOMETRY and GEOGRAPHY sp params``() =
     use cmd = new Address_GetAddressBySpatialLocation()
     cmd.AsyncExecute(SqlGeography.Null) |> ignore
+#endif
     
 [<Fact>]
 let routineCommandTypeTag() = 
