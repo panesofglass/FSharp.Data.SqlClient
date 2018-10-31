@@ -15,6 +15,42 @@ open ProviderImplementation.ProvidedTypes
 open FSharp.Data.SqlClient
 
 [<TypeProvider>]
+type TestGenerativeProvider(config : TypeProviderConfig) as this =
+    inherit TypeProviderForNamespaces (config, assemblyReplacementMap=[("FSharp.Data.SqlClient.DesignTime", "FSharp.Data.SqlClient")], addDefaultProbingLocation=true)
+
+    let nameSpace = this.GetType().Namespace
+    let assembly = Assembly.GetExecutingAssembly()
+    let providerType = ProvidedTypeDefinition(assembly, nameSpace, "TestGenerativeProvider", Some typeof<obj>, hideObjectMethods = true, isErased = false)
+
+    let createType name =
+        let tempAssembly = ProvidedAssembly()
+        let providedEnumType = ProvidedTypeDefinition(tempAssembly, nameSpace, name, baseType = Some typeof<obj>, hideObjectMethods = true, isErased = false)
+        let method = 
+            ProvidedMethod(
+                methodName = "TryParse", 
+                parameters = [
+                    ProvidedParameter("value", typeof<string>) 
+                    ProvidedParameter("ignoreCase", typeof<bool>, optionalValue = false) // optional=false 
+                ], 
+                returnType = typeof<string>, 
+                isStatic = true,
+                invokeCode = fun _ -> Expr.Value("result")
+            )
+        providedEnumType.AddMember method
+        tempAssembly.AddTypes [ providedEnumType ]
+        providedEnumType
+
+    do
+        providerType.DefineStaticParameters(
+            parameters = [ 
+                ProvidedStaticParameter("Query", typeof<string>) 
+            ],             
+            instantiationFunction = (fun typeName _ -> createType typeName)
+        )
+
+        this.AddNamespace( nameSpace, [ providerType ])
+
+[<TypeProvider>]
 [<CompilerMessageAttribute("This API supports the FSharp.Data.SqlClient infrastructure and is not intended to be used directly from your code.", 101, IsHidden = true)>]
 type SqlEnumProvider(config : TypeProviderConfig) as this = 
     inherit TypeProviderForNamespaces (config, assemblyReplacementMap=[("FSharp.Data.SqlClient.DesignTime", "FSharp.Data.SqlClient")], addDefaultProbingLocation=true)
@@ -208,7 +244,7 @@ type SqlEnumProvider(config : TypeProviderConfig) as this =
                 let tryParse = 
                     ProvidedMethod(
                         methodName = "TryParse", 
-                        parameters = [ 
+                        parameters = [
                             ProvidedParameter("value", typeof<string>) 
                             ProvidedParameter("ignoreCase", typeof<bool>, optionalValue = false) // optional=false 
                         ], 
